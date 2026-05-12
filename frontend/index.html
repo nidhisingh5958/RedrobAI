@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redrob AI Resume Matcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Redrob AI Campus Hackathon</p>
+        <h1>Resume Matching Engine</h1>
+        <p class="lede">
+          Normalize noisy skills, compute TF-IDF for resumes, and rank the best matches for each job description.
+        </p>
+      </div>
+      <button id="rerunBtn" class="button">Recalculate Rankings</button>
+    </section>
+
+    <section id="results" class="grid" aria-live="polite"></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
