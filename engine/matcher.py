@@ -1,66 +1,33 @@
-engine/matcher.py
 import math
 
-def cosinesimilarity(veca, vec_b):
-    """
-    Calculate the cosine similarity between two vectors.
-    
-    Args:
-    vec_a (dict): First vector.
-    vec_b (dict): Second vector.
-    
-    Returns:
-    float: Cosine similarity between the two vectors.
-    """
-    # Calculate the dot product
-    dotproduct = sum(veca.get(skill, 0) * vecb.get(skill, 0) for skill in set(veca) | set(vec_b))
-    
-    # Calculate the magnitude of each vector
-    magnitudea = math.sqrt(sum(val  2 for val in veca.values()))
-    magnitudeb = math.sqrt(sum(val  2 for val in vecb.values()))
-    
-    # Check for division by zero
-    if magnitudea == 0 or magnitudeb == 0:
-        return 0
-    
-    # Calculate the cosine similarity
-    return dotproduct / (magnitudea * magnitude_b)
 
-def rankcandidates(tfidfvectors, jd_vector):
-    """
-    Rank candidates based on their TF-IDF vectors and a job description vector.
-    
-    Args:
-    tfidf_vectors (dict): Dictionary of TF-IDF vectors for each candidate.
-    jd_vector (dict): Job description vector.
-    
-    Returns:
-    list: List of top 3 candidates with their name, score, rank, and matched skills.
-    """
-    # Initialize an empty list to store the ranked candidates
+def cosine_similarity(vec_a, vec_b):
+    """Calculate cosine similarity between two sparse vectors."""
+    keys = set(vec_a) | set(vec_b)
+    dot_product = sum(vec_a.get(key, 0) * vec_b.get(key, 0) for key in keys)
+    magnitude_a = math.sqrt(sum(value ** 2 for value in vec_a.values()))
+    magnitude_b = math.sqrt(sum(value ** 2 for value in vec_b.values()))
+
+    if magnitude_a == 0 or magnitude_b == 0:
+        return 0.0
+
+    return dot_product / (magnitude_a * magnitude_b)
+
+
+def rank_candidates(tfidf_vectors, jd_vector):
+    """Rank candidates for a single job description vector."""
     ranked_candidates = []
-    
-    # Loop through each candidate's TF-IDF vector
-    for name, tfidfvector in tfidfvectors.items():
-        # Calculate the cosine similarity between the candidate's TF-IDF vector and the job description vector
-        score = cosinesimilarity(tfidfvector, jd_vector)
-        
-        # Calculate the matched skills
-        matchedskills = [skill for skill in tfidfvector if skill in jdvector and tfidfvector[skill] > 0 and jd_vector[skill] > 0]
-        
-        # Add the candidate to the ranked candidates list
+
+    for candidate_name, tfidf_vector in tfidf_vectors.items():
+        score = cosine_similarity(tfidf_vector, jd_vector)
         ranked_candidates.append({
-            'name': name,
-            'score': round(score, 2),
-            'matchedskills': matchedskills
+            "name": candidate_name,
+            "score": score,
         })
-    
-    # Sort the ranked candidates list in descending order of score
-    ranked_candidates.sort(key=lambda x: x['score'], reverse=True)
-    
-    # Add the rank to each candidate
-    for i, candidate in enumerate(ranked_candidates):
-        candidate['rank'] = i + 1
-    
-    # Return the top 3 candidates
+
+    ranked_candidates.sort(key=lambda item: (-item["score"], item["name"]))
+
+    for index, candidate in enumerate(ranked_candidates, start=1):
+        candidate["rank"] = index
+
     return ranked_candidates[:3]

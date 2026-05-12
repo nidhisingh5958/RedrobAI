@@ -1,7 +1,4 @@
-engine/aliases.py
-
 SKILL_ALIASES = {
-    # Languages
     "python": "python",
     "pyhton": "python",
     "java": "java",
@@ -14,8 +11,6 @@ SKILL_ALIASES = {
     "cpp": "cpp",
     "r": "r",
     "kotlin": "kotlin",
-
-    # ML / Data
     "machinelearning": "machine_learning",
     "machine learning": "machine_learning",
     "ml": "machine_learning",
@@ -44,8 +39,6 @@ SKILL_ALIASES = {
     "powerbi": "data_visualization",
     "pandas": "pandas",
     "numpy": "numpy",
-
-    # Web — Frontend
     "react": "react",
     "reacts": "react",
     "reactjs": "react",
@@ -60,8 +53,6 @@ SKILL_ALIASES = {
     "css": "html_css",
     "jest": "jest",
     "graphql": "graphql",
-
-    # Web — Backend
     "node.js": "nodejs",
     "nodejs": "nodejs",
     "node js": "nodejs",
@@ -72,8 +63,6 @@ SKILL_ALIASES = {
     "rest": "rest_api",
     "restapi": "rest_api",
     "microservices": "microservices",
-
-    # Databases
     "sql": "sql",
     "mysql": "mysql",
     "mysq": "mysql",
@@ -81,8 +70,6 @@ SKILL_ALIASES = {
     "postgres": "postgresql",
     "mongodb": "mongodb",
     "redis": "redis",
-
-    # DevOps / Cloud
     "docker": "docker",
     "kubernetes": "kubernetes",
     "kubernates": "kubernetes",
@@ -91,22 +78,14 @@ SKILL_ALIASES = {
     "cicd": "ci_cd",
     "ci cd": "ci_cd",
     "aws": "aws",
-
-    # Mobile
     "android": "android",
     "firebase": "firebase",
-
-    # CS Fundamentals
     "algorithms": "algorithms",
     "algoritms": "algorithms",
     "data structure": "data_structures",
     "data structures": "data_structures",
     "competitive programming": "competitive_programming",
-
-    # Design
     "ui/ux": "ui_ux",
     "ui ux": "ui_ux",
     "figma": "figma",
 }
-
-print(f"Total key count: {len(SKILL_ALIASES)}")
