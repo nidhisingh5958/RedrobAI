@@ -20,7 +20,7 @@ def build_job_vector(raw_skills, vocabulary):
 
 
 def format_results(jd_id, jd_data, ranked_candidates):
-    header = f"{jd_id} Result: Top 3 Candidates with Matching Scores."
+    header = f"{jd_id} Result: Top 5 Candidates with Matching Scores."
     body = ", ".join(f"{candidate['name']}({candidate['score']:.2f})" for candidate in ranked_candidates)
     return f"{header}\ne.g. {body}\n*"
 

@@ -30,4 +30,4 @@ def rank_candidates(tfidf_vectors, jd_vector):
     for index, candidate in enumerate(ranked_candidates, start=1):
         candidate["rank"] = index
 
-    return ranked_candidates[:3]
+    return ranked_candidates[:5]
